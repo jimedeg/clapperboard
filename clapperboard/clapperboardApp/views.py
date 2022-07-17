@@ -86,5 +86,9 @@ def register_request(request):
 
     return render(request,"clapperboardApp/register.html",{"form": form})
       
+def logout_request(request):
+    logout(request)
+    messages.success(request, "Sesión cerrada con éxito!")
+    return redirect("inicio")
             
        
