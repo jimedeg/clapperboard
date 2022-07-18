@@ -26,10 +26,7 @@ def inicio(request):
             url = "/media/avatar/generica.jpg"
             return render(request, "clapperboardApp/index.html", {"pelicula": pelicula, "series": series, "url": url})
         
-        return render(request, "clapperboardApp/index.html", {"pelicula": pelicula, "series": series})
-    
-    
-    return render(request, 'clapperboardApp/index.html')
+    return render(request, "clapperboardApp/index.html", {"pelicula": pelicula, "series": series})
 
 def login_request(request):
     
@@ -45,7 +42,6 @@ def login_request(request):
             
             if user is not None:
                 login(request, user)
-                messages.success(request, f"Bienvenido {username}!")
                 return redirect("inicio")
             else:
                 messages.error(request, 'Usuario o contraseña incorrectos')
