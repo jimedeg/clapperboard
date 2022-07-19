@@ -15,36 +15,26 @@ class Pelicula(models.Model):
     descripcion = models.CharField(max_length=200)
     imagen = models.ImageField(upload_to='peliculas/', blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.titulo
+    #usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     
-class Series(models.Model):
+class Serie(models.Model):
     titulo = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=200)
     imagen = models.ImageField(upload_to='series/', blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.titulo
+    # usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
-class Juegos(models.Model):
+class Juego(models.Model):
     titulo = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=200)
     imagen = models.ImageField(upload_to='juegos/', blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.titulo
     
 class Musica(models.Model):
     titulo = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=200)
     imagen = models.ImageField(upload_to='musica/', blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.titulo
 
 class Comentario(models.Model):
     nombre = models.CharField(max_length=50)
