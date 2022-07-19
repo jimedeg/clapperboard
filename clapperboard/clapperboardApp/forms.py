@@ -39,18 +39,18 @@ class AvatarForm(forms.Form):
         model = Avatar
         fields = ['imagen']
 
-class nueva_pelicula(forms.Form):
-    titulo = forms.CharField(label="Titulo")
-    descripcion = forms.CharField(label="Descripcion")
+class NuevaPelicula(forms.Form):
+    titulo = forms.CharField(label="Título")
+    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea)
     imagen = forms.ImageField(label="Imagen")
-    fecha_publicacion = forms.DateField(label="Fecha de publicacion")
-    usuario = forms.CharField(label="Usuario")
+    fecha_publicacion = forms.DateField(label="Fecha de publicación")
+    #usuario = forms.CharField(label="Usuario")
     
     class Meta:
         model = Pelicula
-        fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
+        fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion']
 
-class nueva_serie(forms.Form):
+class NuevaSerie(forms.Form):
     titulo = forms.CharField(label="Titulo")
     descripcion = forms.CharField(label="Descripcion")
     imagen = forms.ImageField(label="Imagen")
@@ -58,10 +58,10 @@ class nueva_serie(forms.Form):
     usuario = forms.CharField(label="Usuario")
     
     class Meta:
-        model = Series
+        model = Serie
         fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
 
-class nuevo_juego(forms.Form):
+class NuevaJuego(forms.Form):
     titulo = forms.CharField(label="Titulo")
     descripcion = forms.CharField(label="Descripcion")
     imagen = forms.ImageField(label="Imagen")
@@ -69,10 +69,10 @@ class nuevo_juego(forms.Form):
     usuario = forms.CharField(label="Usuario")
     
     class Meta:
-        model = Juegos
+        model = Juego
         fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
 
-class nueva_musica(forms.Form):
+class NuevaMusica(forms.Form):
     titulo = forms.CharField(label="Titulo")
     descripcion = forms.CharField(label="Descripcion")
     imagen = forms.ImageField(label="Imagen")
@@ -83,7 +83,7 @@ class nueva_musica(forms.Form):
         model = Musica
         fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
 
-class nuevo_comentario(forms.Form):
+class NuevaComentario(forms.Form):
     nombre = forms.CharField(max_length=50)
     email = forms.EmailField()
     mensaje = forms.CharField(max_length=300, required=True, widget=forms.Textarea)
