@@ -13,27 +13,27 @@ class Avatar(models.Model):
 class Pelicula(models.Model):
     titulo = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=200)
-    imagen = models.ImageField(upload_to='peliculas/', blank=True)
+    imagen = models.ImageField(upload_to='peliculas', blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
     #usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     
 class Serie(models.Model):
     titulo = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=200)
-    imagen = models.ImageField(upload_to='series/', blank=True)
+    imagen = models.ImageField(upload_to='series', blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
     # usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Juego(models.Model):
     titulo = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=200)
-    imagen = models.ImageField(upload_to='juegos/', blank=True)
+    imagen = models.ImageField(upload_to='juegos', blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
     
 class Musica(models.Model):
     titulo = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=200)
-    imagen = models.ImageField(upload_to='musica/', blank=True)
+    imagen = models.ImageField(upload_to='musica', blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
 
 class Comentario(models.Model):

@@ -15,7 +15,7 @@ from django.contrib import messages
 def inicio(request):
     
     pelicula = Pelicula.objects.all()[:3]
-    series = Series.objects.all()[:3]
+    series = Serie.objects.all()[:3]
     
     if request.user.is_authenticated:
         
@@ -157,3 +157,81 @@ def agregar_avatar(request):
     
     return render(request, "clapperboardApp/agregar_avatar.html", {"form": form})
 
+def peliculas(request):
+        
+    if request.method == "POST":
+        
+        buscar = request.POST["buscar"]
+        
+        if buscar != "":
+            pelicula = Pelicula.objects.filter(Q(titulo__icontains=buscar)).values()
+            
+            return render(request, "clapperboardApp/peliculas.html", {"pelicula": pelicula, "buscar": True, "busqueda":buscar})
+        
+    pelicula = Pelicula.objects.all()  
+    
+    return render(request, "clapperboardApp/peliculas.html", {"pelicula": pelicula, "buscar": False})      
+        
+@staff_member_required
+def nueva_pelicula(request):
+    
+    if request.method == "POST":
+        
+        form = NuevaPelicula(request.POST, request.FILES)
+        
+        if form.is_valid():
+            
+            info_pelicula = form.cleaned_data
+            pelicula = Pelicula(titulo=info_pelicula["titulo"], descripcion=info_pelicula["descripcion"], imagen=info_pelicula["imagen"], fecha_publicacion=info_pelicula["fecha_publicacion"])
+            pelicula.save() 
+            messages.success(request, "Pelicula agregada con éxito!")
+            return redirect("peliculas")
+        
+        else:
+            messages.error(request, "Error al agregar la pelicula")
+            return render(request, "clapperboardApp/nueva_pelicula.html", {"form": form})
+    
+    else:
+        form_vacio = NuevaPelicula()
+    
+        return render(request, "clapperboardApp/nueva_pelicula.html", {"form": form_vacio})
+
+@staff_member_required
+def editar_pelicula(request):
+    
+    pelicula= Pelicula.objects.get(id=request.GET["id"])
+    
+    if request.method == "POST":
+        
+        form = nueva_pelicula(request.POST, request.FILES)
+        
+        if form.is_valid():
+            
+            info_pelicula = form.cleaned_data
+            
+            pelicula.titulo = info_pelicula["titulo"]
+            pelicula.descripcion = info_pelicula["descripcion"]
+            pelicula.imagen = info_pelicula["imagen"]
+            pelicula.fecha_publicacion = info_pelicula["fecha_publicacion"]
+            pelicula.save() 
+            messages.success(request, "Pelicula actualizada con éxito!")
+            return redirect("peliculas")
+        
+        else:
+            messages.error(request, "Error al actualizar la pelicula")
+            return redirect(request, "clapperboardApp/editar_pelicula.html", {"form": form} )
+    else:
+        
+        form = nueva_pelicula(initial={"titulo": pelicula.titulo, "descripcion": pelicula.descripcion, "imagen": pelicula.imagen, "fecha_publicacion": pelicula.fecha_publicacion})
+       
+        return render (request, "clapperboardApp/editar_pelicula.html", {"form": form , "accion": "Editar Pelicula"})
+    
+@staff_member_required
+def eliminar_pelicula(request):
+    
+    pelicula= Pelicula.objects.get(id=request.GET["id"])
+    pelicula.delete()
+    messages.success(request, "Pelicula eliminada con éxito!")
+    return redirect("peliculas")
+
+  

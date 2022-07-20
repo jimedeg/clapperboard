@@ -11396,6 +11396,7 @@ header.masthead {
   background-position: center top;
   background-repeat: no-repeat;
   background-attachment: scroll;
+  background-size: 50% auto;
 }
 header.masthead h1, header.masthead .h1 {
   font-size: 2.25rem;
