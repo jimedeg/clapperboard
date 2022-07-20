@@ -1,3 +1,4 @@
+from random import random
 from django.shortcuts import render,redirect
 #from django.http import HttpResponse
 from django.db.models import Q
@@ -167,8 +168,14 @@ def peliculas(request):
             pelicula = Pelicula.objects.filter(Q(titulo__icontains=buscar)).values()
             
             return render(request, "clapperboardApp/peliculas.html", {"pelicula": pelicula, "buscar": True, "busqueda":buscar})
-        
-    pelicula = Pelicula.objects.all()  
+    
+    # peliculas = list(Pelicula.objects.filter(
+    #             titulo= True, 
+    #             descripcion = True,).values_list('id', flat=True))
+    # principal = random.choice(peliculas)
+    # principal = Pelicula.objects.get(id=principal)
+    # contexto= {"pelicula": principal}                    
+    pelicula = Pelicula.objects.all()
     
     return render(request, "clapperboardApp/peliculas.html", {"pelicula": pelicula, "buscar": False})      
         
