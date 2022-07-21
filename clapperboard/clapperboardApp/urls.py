@@ -14,6 +14,7 @@ urlpatterns = [
     path ('nueva_pelicula', nueva_pelicula, name= "nueva_pelicula"),
     path ('editar_pelicula/<pelicula_id>/', editar_pelicula, name= "editar_pelicula"),
     path ('eliminar_pelicula/<pelicula_id>/', eliminar_pelicula, name= "eliminar_pelicula"),
+    path ('peliculas/<pk>/', PeliculaDetalle.as_view(), name= "PeliculaDetalle"),
 
     path ('series', series, name= "series"),
     

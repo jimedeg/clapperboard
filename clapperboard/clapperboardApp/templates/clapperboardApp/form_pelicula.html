@@ -25,8 +25,28 @@ Nueva Pelicula- CLAPPERBOARD
             
                     {{ form | crispy }}
             
-                    <button class="btn btn-outline-danger my-3 d-grid gap-2 col-4" type="submit">Guardar</button>            
-                    
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-danger my-3 d-grid gap-2 col-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Guardar
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Guardar Película</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            ¿Está seguro de que desea guardar la película?
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-outline-primary" type="submit" >Guardar</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

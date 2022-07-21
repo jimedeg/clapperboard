@@ -1,4 +1,3 @@
-from random import random
 from django.shortcuts import render,redirect
 #from django.http import HttpResponse
 from django.db.models import Q
@@ -11,6 +10,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
+from django.views.generic.detail import DetailView
 
 # Create your views here.
 def inicio(request):
@@ -240,6 +241,10 @@ def eliminar_pelicula(request, pelicula_id):
     messages.success(request, "Pelicula eliminada con éxito!")
     return redirect("peliculas")
 
+class PeliculaDetalle(DetailView):
+    model = Pelicula
+    template_name = "clapperboardApp/pelicula_detalle.html"
+    context_object_name = "pelicula"
 
 def series(request):
         

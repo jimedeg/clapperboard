@@ -38,23 +38,34 @@ Películas- CLAPPERBOARD
     {% for x in pelicula %}
         <div class="container-fluid">
             <div class="row d-flex justify-content-center">
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card mb-3" style="max-width: 40rem;">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="{{x.imagen.url}}" class="img-fluid rounded-start" alt="{{x.titulo}}">
+                        <img src="{{x.imagen.url}}" class="img-fluid rounded-start my-3" alt="{{x.titulo}}">
                       </div>
                       <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{x.titulo}}</h5>
-                                <p class="card-text">{{x.descripcion}}</p>
-                                <a href="#" class="btn btn-outline-success">ver mas</a>
+                                <h5 class="card-title ">{{x.titulo}}</h5>
+                                <p class="card-text text-truncate">{{x.descripcion}}</p>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <a href="{% url 'PeliculaDetalle' x.id %}" class="btn btn-outline-success">Ver más</a>
                                     {% if user.is_authenticated %}
                                         {% if user.is_superuser %}
                                             <a href=" {% url 'editar_pelicula' x.id %} " class="btn btn-outline-warning"> <i class="bi bi-pencil-square"></i> Editar</a>
                                             <a href=" {% url 'eliminar_pelicula' x.id %} " class="btn btn-outline-danger"> <i class="bi bi-trash"></i> Eliminar</a>
                                         {% endif %}
                                     {% endif %}
-                                <p class="card-text"><small class="text-muted">{{x.fecha_publicacion}}</small></p>
+                                    <br>
+                                    <br>
+                                    <br> 
+                                    <br>
+                                    <br>    
+                                <div class="card-footer bg-transparent ">{{x.fecha_publicacion}}</div>
+                
+                                <!-- <p class="card-text"><small class="text-muted"></small></p> -->
                             </div>
                       </div>
                     </div>
