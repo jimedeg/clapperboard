@@ -223,7 +223,7 @@ def editar_pelicula(request, pelicula_id):
             pelicula.fecha_publicacion = info_pelicula["fecha_publicacion"]
             pelicula.save() 
             messages.success(request, "Pelicula actualizada con éxito!")
-            return redirect("peliculas")     
+            return redirect("peliculas")
         
         else:
             messages.error(request, "Error al actualizar la pelicula")
