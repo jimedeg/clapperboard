@@ -196,21 +196,21 @@ def nueva_pelicula(request):
         
         else:
             messages.error(request, "Error al agregar la pelicula")
-            return render(request, "clapperboardApp/nueva_pelicula.html", {"form": form})
+            return render(request, "clapperboardApp/form_pelicula.html", {"form": form})
     
     else:
         form_vacio = NuevaPelicula()
     
-        return render(request, "clapperboardApp/nueva_pelicula.html", {"form": form_vacio})
+        return render(request, "clapperboardApp/form_pelicula.html", {"form": form_vacio})
 
 @staff_member_required
-def editar_pelicula(request):
+def editar_pelicula(request, pelicula_id):
     
-    pelicula= Pelicula.objects.get(id=request.GET["id"])
+    pelicula= Pelicula.objects.get(id=pelicula_id)
     
     if request.method == "POST":
         
-        form = nueva_pelicula(request.POST, request.FILES)
+        form = NuevaPelicula(request.POST, request.FILES)
         
         if form.is_valid():
             
@@ -222,21 +222,20 @@ def editar_pelicula(request):
             pelicula.fecha_publicacion = info_pelicula["fecha_publicacion"]
             pelicula.save() 
             messages.success(request, "Pelicula actualizada con éxito!")
-            return redirect("peliculas")
+            return redirect("peliculas")     
         
         else:
             messages.error(request, "Error al actualizar la pelicula")
-            return redirect(request, "clapperboardApp/editar_pelicula.html", {"form": form} )
-    else:
-        
-        form = nueva_pelicula(initial={"titulo": pelicula.titulo, "descripcion": pelicula.descripcion, "imagen": pelicula.imagen, "fecha_publicacion": pelicula.fecha_publicacion})
+            return render(request, "clapperboardApp/form_pelicula.html", {"form": form} )
+    
+    form = NuevaPelicula(initial={"titulo": pelicula.titulo, "descripcion": pelicula.descripcion, "imagen": pelicula.imagen, "fecha_publicacion": pelicula.fecha_publicacion})
        
-        return render (request, "clapperboardApp/editar_pelicula.html", {"form": form , "accion": "Editar Pelicula"})
+    return render (request, "clapperboardApp/form_pelicula.html", {"form": form })
     
 @staff_member_required
-def eliminar_pelicula(request):
+def eliminar_pelicula(request, pelicula_id):
     
-    pelicula= Pelicula.objects.get(id=request.GET["id"])
+    pelicula= Pelicula.objects.get(id=pelicula_id)
     pelicula.delete()
     messages.success(request, "Pelicula eliminada con éxito!")
     return redirect("peliculas")
