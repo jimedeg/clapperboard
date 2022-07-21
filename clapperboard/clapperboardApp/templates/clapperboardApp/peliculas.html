@@ -50,7 +50,6 @@ Películas- CLAPPERBOARD
                                 <br>
                                 <br>
                                 <br>
-                                <br>
                                 <a href="{% url 'PeliculaDetalle' x.id %}" class="btn btn-outline-success">Ver más</a>
                                     {% if user.is_authenticated %}
                                         {% if user.is_superuser %}
@@ -61,8 +60,7 @@ Películas- CLAPPERBOARD
                                     <br>
                                     <br>
                                     <br> 
-                                    <br>
-                                    <br>    
+                                    <br> 
                                 <div class="card-footer bg-transparent ">{{x.fecha_publicacion}}</div>
                 
                                 <!-- <p class="card-text"><small class="text-muted"></small></p> -->
