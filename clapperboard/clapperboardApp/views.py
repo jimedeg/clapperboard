@@ -240,4 +240,19 @@ def eliminar_pelicula(request, pelicula_id):
     messages.success(request, "Pelicula eliminada con éxito!")
     return redirect("peliculas")
 
-  
+
+def series(request):
+        
+    if request.method == "POST":
+        
+        buscar = request.POST["buscar"]
+        
+        if buscar != "":
+            serie = Serie.objects.filter(Q(titulo__icontains=buscar)).values()
+            
+            return render(request, "clapperboardApp/peliculas.html", {"serie": serie, "buscar": True, "busqueda":buscar})
+    
+            
+    serie = Serie.objects.all()
+    
+    return render(request, "clapperboardApp/peliculas.html", {"pelicula": serie, "buscar": False})      

@@ -14,6 +14,8 @@ urlpatterns = [
     path ('nueva_pelicula', nueva_pelicula, name= "nueva_pelicula"),
     path ('editar_pelicula/<pelicula_id>/', editar_pelicula, name= "editar_pelicula"),
     path ('eliminar_pelicula/<pelicula_id>/', eliminar_pelicula, name= "eliminar_pelicula"),
+
+    path ('series', series, name= "series"),
     
     # path ('comentario', comentario, name= "comentario"),
 
