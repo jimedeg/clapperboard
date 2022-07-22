@@ -4,7 +4,7 @@
 
 
 {% block tituloPagina %}
-Detalle Pelicula- CLAPPERBOARD
+Detalle Serie- CLAPPERBOARD
 {% endblock %}
 
 {% block contenidoPagina %}
@@ -12,13 +12,13 @@ Detalle Pelicula- CLAPPERBOARD
     <div class="row d-flex justify-content-center">
         
         <div class="card border-success my-2 mb-3" style="max-width: 50rem;">
-            <div class="card-header bg-transparent border-success">{{pelicula.titulo}}</div>
+            <div class="card-header bg-transparent border-success">{{serie.titulo}}</div>
             <div class="card-body text-success">
-            <h5 class="card-title"> {{pelicula.titulo}}</h5>
-            <p class="card-text"> {{pelicula.descripcion | safe}} </p>
-            <a href="{% url 'peliculas' %}" class="btn btn-outline-success">Volver</a>
+            <h5 class="card-title"> {{serie.titulo}}</h5>
+            <p class="card-text"> {{serie.descripcion | safe}} </p>
+            <a href="{% url 'serie' %}" class="btn btn-outline-success">Volver</a>
             </div>
-            <div class="card-footer bg-transparent border-success">{{pelicula.fecha_publicacion}}</div>
+            <div class="card-footer bg-transparent border-success">{{serie.fecha_publicacion}}</div>
     
         </div>
         

@@ -20,6 +20,7 @@ urlpatterns = [
     path ('nueva_serie', nueva_serie, name= "nueva_serie"),
     path ('editar_serie/<serie_id>/', editar_serie, name= "editar_serie"),
     path ('eliminar_serie/<serie_id>/', eliminar_serie, name= "eliminar_serie"),
+    path ('series/<pk>/', SerieDetalle.as_view(), name= "SerieDetalle"),
     
 
 

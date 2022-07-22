@@ -357,3 +357,9 @@ def eliminar_serie(request, serie_id):
     serie.delete()
     messages.success(request, "Serie eliminada con éxito!")
     return redirect("series")
+
+class SerieDetalle(DetailView):
+    
+    model = Serie
+    template_name = "clapperboardApp/serie_detalle.html"
+    context_object_name = "serie"
