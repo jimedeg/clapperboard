@@ -160,6 +160,8 @@ def agregar_avatar(request):
     return render(request, "clapperboardApp/agregar_avatar.html", {"form": form})
 
 def peliculas(request):
+    
+    # ctx = {'form' = NuevoComentario()}
         
     if request.method == "POST":
         
@@ -178,7 +180,7 @@ def peliculas(request):
     # contexto= {"pelicula": principal}                    
     peliculas = Pelicula.objects.all()
     
-    return render(request, "clapperboardApp/peliculas.html", {"peliculas": peliculas, "buscar": False})      
+    return render(request, "clapperboardApp/peliculas.html", {"peliculas": peliculas, "buscar": False}) #'ctx':ctx      
         
 @staff_member_required
 def nueva_pelicula(request):
@@ -243,9 +245,36 @@ def eliminar_pelicula(request, pelicula_id):
     return redirect("peliculas")
 
 class PeliculaDetalle(DetailView):
+    
     model = Pelicula
     template_name = "clapperboardApp/pelicula_detalle.html"
     context_object_name = "pelicula"
+
+def comentarios(request):
+    
+    comentarios = Comentario.objects.all()
+    form = NuevoComentario()
+    
+    if request.method == "POST":
+        
+        form = NuevoComentario(request.POST)
+        
+        if form.is_valid():
+            
+            info_comentarios = form.cleaned_data
+            comentarios = Comentario(nombre=info_comentarios["nombre"], email=info_comentarios["email"], mensaje=info_comentarios["mensaje"])
+            comentarios.save()
+            messages.success(request, "Comentario agregado con éxito!")
+            return redirect("comentarios")
+        
+        else:
+            messages.error(request, "Error al agregar el comentario")
+            return redirect("comentarios")
+    
+    else:
+        form = NuevoComentario()
+    
+    return render(request, "clapperboardApp/comentarios.html", {"comentarios": comentarios, "form": form})
 
 def series(request):
         

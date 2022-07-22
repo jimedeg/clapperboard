@@ -18,6 +18,8 @@ urlpatterns = [
 
     path ('series', series, name= "series"),
     
+    path('comentarios/', comentarios, name= "comentarios"),
+    
     # path ('comentario', comentario, name= "comentario"),
 
 ]

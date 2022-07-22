@@ -47,4 +47,8 @@ class Comentario(models.Model):
     email = models.EmailField()
     mensaje = models.TextField(max_length=500, blank=True, null=True)
     actualizado = models.DateTimeField(auto_now=True)
-    creado = models.DateTimeField(auto_now_add=True)   
+    creado = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-creado']
+    

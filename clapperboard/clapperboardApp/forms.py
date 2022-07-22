@@ -87,7 +87,7 @@ class NuevaMusica(forms.Form):
         model = Musica
         fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
 
-class NuevaComentario(forms.Form):
+class NuevoComentario(forms.Form):
     nombre = forms.CharField(max_length=50)
     email = forms.EmailField()
     mensaje = forms.CharField(max_length=300, required=True, widget=forms.Textarea)

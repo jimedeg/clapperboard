@@ -26,15 +26,15 @@
             <div class="container-fluid px-4 px-lg-5">
                 <a class="navbar-brand" href="{% url 'inicio' %}"> <span style="color: rgb(205, 255, 7);"> Clapperboard </span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span style="color: rgb(205, 255, 7);"><i class="bi bi-menu-down"></i></i></span>
+                    <span style="color: #0a0a09;"><i class="bi bi-menu-down"></i></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}"><span style="color: #d5e691"> Inicio </span></a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'peliculas' %}"><span style="color: #d5e691"> Peliculas </span></a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'series' %}"><span style="color: #d5e691"> Series </span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'editar_perfil' %}"><span style="color: #d5e691"> Contacto </span></a></li>
-                    
+                        <li class="nav-item"><a class="nav-link" href="{% url 'comentarios' %}"><span style="color: #d5e691"> Comentarios </span></a></li>
+                        
                     
                         {% if user.is_authenticated %}
                             {% if user.avatar.imagen.url %}
@@ -48,8 +48,8 @@
                                 Perfil
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #d5e691;">
-                                    <li class="nav-item"><a class="nav-link" href="{% url 'editar_perfil' %}"><span style="color: #0a0a0a"> Editar Perfil </span></a></li>
-                                    <li><a class="dropdown-item" href="{% url 'agregar_avatar' %}"><span style="color: #0a0a0a"> Agregar Avatar </span></a></li>
+                                    <li><a class="dropdown-item" href="{% url 'editar_perfil' %}"><span style="color: #0a0a0a">Editar Perfil</span></a></li>
+                                    <li><a class="dropdown-item" href="{% url 'agregar_avatar' %}"><span style="color: #0a0a0a">Agregar Avatar</span></a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'logout' %}"><span style="color: #0a0a0a"> Cerrar Sesión </span></a></li>
                                 </ul>
