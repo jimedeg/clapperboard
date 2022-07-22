@@ -1,6 +1,9 @@
+from secrets import choice
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+from ckeditor.widgets import CKEditorWidget
 
 from .models import *
 
@@ -41,18 +44,19 @@ class AvatarForm(forms.Form):
 
 class NuevaPelicula(forms.Form):
     titulo = forms.CharField(label="Título")
-    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea)
+    subtitulo = forms.CharField(label="Subtítulo")
+    descripcion = forms.CharField(label="Descripción", widget=CKEditorWidget())
     imagen = forms.ImageField(label="Imagen")
-    fecha_publicacion = forms.DateField(label="Fecha de publicación")
+    fecha_publicacion = forms.DateField(label="Fecha de publicación", widget=forms.SelectDateWidget)
     #usuario = forms.CharField(label="Usuario")
     
     class Meta:
         model = Pelicula
-        fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion']
+        fields = ['titulo', 'subtitulo' ,'descripcion', 'imagen', 'fecha_publicacion']
 
 class NuevaSerie(forms.Form):
     titulo = forms.CharField(label="Titulo")
-    descripcion = forms.CharField(label="Descripcion")
+    descripcion = forms.CharField(label="Descripcion", widget=CKEditorWidget)
     imagen = forms.ImageField(label="Imagen")
     fecha_publicacion = forms.DateField(label="Fecha de publicacion")
     usuario = forms.CharField(label="Usuario")

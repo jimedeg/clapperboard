@@ -35,33 +35,33 @@ Películas- CLAPPERBOARD
             </h4>
         </div>
     </section>
-    {% for x in pelicula %}
+    {% for pelicula in peliculas %}
         <div class="container-fluid">
             <div class="row d-flex justify-content-center">
                 <div class="card mb-3" style="max-width: 40rem;">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="{{x.imagen.url}}" class="img-fluid rounded-start my-3" alt="{{x.titulo}}">
+                        <img src="{{pelicula.imagen.url}}" class="img-fluid rounded-start my-3" alt="{{pelicula.titulo}}">
                       </div>
                       <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title ">{{x.titulo}}</h5>
-                                <p class="card-text text-truncate">{{x.descripcion}}</p>
+                                <h5 class="card-title ">{{pelicula.titulo}}</h5>
+                                <p class="card-text" >{{pelicula.subtitulo}}</p>
                                 <br>
                                 <br>
                                 <br>
-                                <a href="{% url 'PeliculaDetalle' x.id %}" class="btn btn-outline-success">Ver más</a>
+                                <a href="{% url 'PeliculaDetalle' pelicula.id %}" class="btn btn-outline-success">Ver más</a>
                                     {% if user.is_authenticated %}
                                         {% if user.is_superuser %}
-                                            <a href=" {% url 'editar_pelicula' x.id %} " class="btn btn-outline-warning"> <i class="bi bi-pencil-square"></i> Editar</a>
-                                            <a href=" {% url 'eliminar_pelicula' x.id %} " class="btn btn-outline-danger"> <i class="bi bi-trash"></i> Eliminar</a>
+                                            <a href=" {% url 'editar_pelicula' pelicula.id %} " class="btn btn-outline-warning"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                            <a href=" {% url 'eliminar_pelicula' pelicula.id %} " class="btn btn-outline-danger"> <i class="bi bi-trash"></i> Eliminar</a>
                                         {% endif %}
                                     {% endif %}
                                     <br>
                                     <br>
                                     <br> 
                                     <br> 
-                                <div class="card-footer bg-transparent ">{{x.fecha_publicacion}}</div>
+                                <div class="card-footer bg-transparent ">{{pelicula.fecha_publicacion}}</div>
                 
                                 <!-- <p class="card-text"><small class="text-muted"></small></p> -->
                             </div>

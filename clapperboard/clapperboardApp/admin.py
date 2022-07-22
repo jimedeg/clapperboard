@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from .models import *
 class PeliculaAdmin(admin.ModelAdmin):
-    list_display= ('titulo', 'descripcion', 'fecha_publicacion')
+    list_display= ('titulo', 'subtitulo', 'descripcion', 'fecha_publicacion')
 
 class SerieAdmin(admin.ModelAdmin):
     list_display= ('titulo', 'descripcion', 'fecha_publicacion')

@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'colorfield',
     'crispy_forms',
+    'ckeditor',
+    'ckeditor_uploader',
     
     
     'clapperboardApp',
@@ -130,15 +133,16 @@ STATIC_URL = 'static/'
 
 # Add these new lines
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    BASE_DIR / 'static',
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = BASE_DIR / 'static_root'
 
 #Ruta a media
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 
 # Default primary key field type

@@ -20,6 +20,8 @@ Agregar Avatar- CLAPPERBOARD
                     <p class="alert alert-danger"> {{message}} </p>
                     {% endfor %}
                 </div>
+                <h5>Estas agregando el avatar de "{{user.username}}": </h5>
+
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
             
