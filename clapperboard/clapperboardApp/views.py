@@ -159,6 +159,8 @@ def agregar_avatar(request):
     
     return render(request, "clapperboardApp/agregar_avatar.html", {"form": form})
 
+
+
 def peliculas(request):
     
     # ctx = {'form' = NuevoComentario()}
@@ -250,6 +252,7 @@ class PeliculaDetalle(DetailView):
     template_name = "clapperboardApp/pelicula_detalle.html"
     context_object_name = "pelicula"
 
+<<<<<<< Updated upstream
 def comentarios(request):
     
     comentarios = Comentario.objects.all()
@@ -275,6 +278,9 @@ def comentarios(request):
         form = NuevoComentario()
     
     return render(request, "clapperboardApp/comentarios.html", {"comentarios": comentarios, "form": form})
+=======
+
+>>>>>>> Stashed changes
 
 def series(request):
         
@@ -285,9 +291,31 @@ def series(request):
         if buscar != "":
             serie = Serie.objects.filter(Q(titulo__icontains=buscar)).values()
             
-            return render(request, "clapperboardApp/peliculas.html", {"serie": serie, "buscar": True, "busqueda":buscar})
+            return render(request, "clapperboardApp/series.html", {"serie": serie, "buscar": True, "busqueda":buscar})
     
             
     serie = Serie.objects.all()
     
-    return render(request, "clapperboardApp/peliculas.html", {"pelicula": serie, "buscar": False})      
+    return render(request, "clapperboardApp/series.html", {"serie": serie, "buscar": False})      
+
+def nueva_serie(request):
+    if request.method == "POST":
+        
+        form = NuevaSerie(request.POST, request.FILES)
+        
+        if form.is_valid():
+            
+            info_serie = form.cleaned_data
+            serie = Serie(titulo=info_serie["titulo"], subtitulo=info_serie["subtitulo"] ,descripcion=info_serie["descripcion"], imagen=info_serie["imagen"], fecha_publicacion=info_serie["fecha_publicacion"])
+            serie.save() 
+            messages.success(request, "Serie agregada con éxito!")
+            return redirect("serie")
+        
+        else:
+            messages.error(request, "Error al agregar la serie")
+            return render(request, "clapperboardApp/form_serie.html", {"form": form})
+    
+    else:
+        form_vacio = NuevaPelicula()
+    
+        return render(request, "clapperboardApp/form_pelicula.html", {"form": form_vacio})

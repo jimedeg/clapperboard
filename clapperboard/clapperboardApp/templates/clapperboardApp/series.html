@@ -21,7 +21,7 @@ Series- CLAPPERBOARD
                         <button class="btn btn-outline-danger text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
                     {% if user.is_authenticated %}
                         {% if user.is_superuser %}
-                            <a class="btn btn-outline-danger text-nowrap ms-3 my-2 my-sm-0" href=" {% url 'nueva_pelicula' %} "> <i class="bi bi-plus-lg"></i> Crear Serie</a>
+                            <a class="btn btn-outline-danger text-nowrap ms-3 my-2 my-sm-0" href=" {% url 'nueva_serie' %} "> <i class="bi bi-plus-lg"></i> Crear Serie</a>
                         {% endif %}
                     {% endif %}
                     </form>               
@@ -35,7 +35,7 @@ Series- CLAPPERBOARD
             </h4>
         </div>
     </section>
-    {% for x in pelicula %}
+    {% for x in serie %}
         <div class="container-fluid">
             <div class="row d-flex justify-content-center">
                 <div class="card mb-3" style="max-width: 540px;">
