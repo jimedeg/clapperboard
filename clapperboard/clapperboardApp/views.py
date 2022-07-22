@@ -252,7 +252,6 @@ class PeliculaDetalle(DetailView):
     template_name = "clapperboardApp/pelicula_detalle.html"
     context_object_name = "pelicula"
 
-<<<<<<< Updated upstream
 def comentarios(request):
     
     comentarios = Comentario.objects.all()
@@ -278,9 +277,9 @@ def comentarios(request):
         form = NuevoComentario()
     
     return render(request, "clapperboardApp/comentarios.html", {"comentarios": comentarios, "form": form})
-=======
 
->>>>>>> Stashed changes
+
+
 
 def series(request):
         
@@ -298,6 +297,7 @@ def series(request):
     
     return render(request, "clapperboardApp/series.html", {"serie": serie, "buscar": False})      
 
+@staff_member_required
 def nueva_serie(request):
     if request.method == "POST":
         
@@ -316,6 +316,44 @@ def nueva_serie(request):
             return render(request, "clapperboardApp/form_serie.html", {"form": form})
     
     else:
-        form_vacio = NuevaPelicula()
+        form_vacio = NuevaSerie()
     
-        return render(request, "clapperboardApp/form_pelicula.html", {"form": form_vacio})
+        return render(request, "clapperboardApp/form_serie.html", {"form": form_vacio})
+
+@staff_member_required
+def editar_serie(request, serie_id):
+    
+    serie= Serie.objects.get(id=serie_id)
+    
+    if request.method == "POST":
+        
+        form = NuevaSerie(request.POST, request.FILES)
+        
+        if form.is_valid():
+            
+            info_pelicula = form.cleaned_data
+            
+            serie.titulo = info_pelicula["titulo"]
+            serie.subtitulo = info_pelicula["subtitulo"]
+            serie.descripcion = info_pelicula["descripcion"]
+            serie.imagen = info_pelicula["imagen"]
+            serie.fecha_publicacion = info_pelicula["fecha_publicacion"]
+            serie.save() 
+            messages.success(request, "Serie actualizada con éxito!")
+            return redirect("series")
+        
+        else:
+            messages.error(request, "Error al actualizar la serie")
+            return render(request, "clapperboardApp/form_serie.html", {"form": form} )
+    
+    form = NuevaSerie(initial={"titulo": serie.titulo, "subtitulo": serie.subtitulo ,"descripcion": serie.descripcion, "imagen": serie.imagen, "fecha_publicacion": serie.fecha_publicacion})
+       
+    return render (request, "clapperboardApp/form_serie.html", {"form": form })
+
+@staff_member_required
+def eliminar_serie(request, serie_id):
+
+    serie= Serie.objects.get(id=serie_id)
+    serie.delete()
+    messages.success(request, "Serie eliminada con éxito!")
+    return redirect("series")

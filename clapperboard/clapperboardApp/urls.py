@@ -17,8 +17,13 @@ urlpatterns = [
     path ('peliculas/<pk>/', PeliculaDetalle.as_view(), name= "PeliculaDetalle"),
 
     path ('series', series, name= "series"),
+    path ('nueva_serie', nueva_serie, name= "nueva_serie"),
+    path ('editar_serie/<serie_id>/', editar_serie, name= "editar_serie"),
     
+
+
     path('comentarios/', comentarios, name= "comentarios"),
+    
     
     # path ('comentario', comentario, name= "comentario"),
 
