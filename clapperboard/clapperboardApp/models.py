@@ -17,8 +17,11 @@ class Pelicula(models.Model):
     subtitulo= models.CharField(max_length=100)
     descripcion = models.CharField(max_length=200)
     imagen = models.ImageField(upload_to='peliculas', blank=True)
-    fecha_publicacion = models.DateField(default=timezone.now)
+    fecha_publicacion = models.DateField(auto_now_add=True)
     #usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering = ["-fecha_publicacion"]
     
     def __str__(self):
         return self.titulo
