@@ -22,7 +22,7 @@ def inicio(request):
     if request.user.is_authenticated:
         
         try:
-            avatar = Avatar.objects.filter(usuario=request.user)
+            avatar = Avatar.objects.get(usuario=request.user)
             url = avatar.imagen.url
         except:
             url = "/media/avatar/generica.jpg"
@@ -107,11 +107,16 @@ def logout_request(request):
 @login_required
 def editar_perfil(request):
     
-    user = request.user
+    user = request.user    
+    try:
+        avatar = Avatar.objects.get(usuario=user)
+    except:
+        avatar = Avatar(usuario=user)
+        avatar.save()
     
     if request.method == "POST":
         
-        form = UserEditForm(request.POST)
+        form = UserEditForm2(request.POST, request.FILES)
         
         if form.is_valid():
             
@@ -122,14 +127,23 @@ def editar_perfil(request):
 
             user.save()
             messages.success(request, "Perfil actualizado con éxito!")
+
+            if info['imagen'] != None:
+                avatar.imagen = info['imagen']
+                avatar.save()
+                           
             return redirect("inicio")
-        
+                
         else:
             messages.error(request, "Error al actualizar el perfil")
-            return redirect("editar_perfil")
+            return render(request, "clapperboardApp/editar_perfil.html", {"form": form})          
     
     else:
-         form = UserEditForm(initial={"email": user.email, "first_name": user.first_name, "last_name": user.last_name})
+         form = UserEditForm2(initial={"email": user.email,
+                                      "first_name": user.first_name, 
+                                      "last_name": user.last_name, 
+                                      "imagen": avatar.imagen
+                                      })
     
     return render(request, "clapperboardApp/editar_perfil.html", {"form": form})          
  
@@ -173,13 +187,8 @@ def peliculas(request):
             peliculas = Pelicula.objects.filter(Q(titulo__icontains=buscar))
             
             return render(request, "clapperboardApp/peliculas.html", {"peliculas": peliculas, "buscar": True, "busqueda":buscar})
+                    
     
-    # peliculas = list(Pelicula.objects.filter(
-    #             titulo= True, 
-    #             descripcion = True,).values_list('id', flat=True))
-    # principal = random.choice(peliculas)
-    # principal = Pelicula.objects.get(id=principal)
-    # contexto= {"pelicula": principal}                    
     peliculas = Pelicula.objects.all()
     
     return render(request, "clapperboardApp/peliculas.html", {"peliculas": peliculas, "buscar": False}) #'ctx':ctx      
@@ -194,8 +203,14 @@ def nueva_pelicula(request):
         if form.is_valid():
             
             info_pelicula = form.cleaned_data
-            pelicula = Pelicula(titulo=info_pelicula["titulo"], subtitulo=info_pelicula["subtitulo"] ,descripcion=info_pelicula["descripcion"], imagen=info_pelicula["imagen"], fecha_publicacion=info_pelicula["fecha_publicacion"])
-            pelicula.save() 
+            peliculas = Pelicula(titulo=info_pelicula["titulo"], 
+                                subtitulo=info_pelicula["subtitulo"], 
+                                descripcion=info_pelicula["descripcion"], 
+                                imagen=info_pelicula["imagen"], 
+                                fecha_publicacion=info_pelicula["fecha_publicacion"], 
+                                usuario=request.user,
+                                )
+            peliculas.save() 
             messages.success(request, "Pelicula agregada con éxito!")
             return redirect("peliculas")
         
@@ -225,7 +240,9 @@ def editar_pelicula(request, pelicula_id):
             peliculas.subtitulo = info_pelicula["subtitulo"]
             peliculas.descripcion = info_pelicula["descripcion"]
             peliculas.imagen = info_pelicula["imagen"]
-            peliculas.fecha_publicacion = info_pelicula["fecha_publicacion"]
+            # peliculas.fecha_publicacion = info_pelicula["fecha_publicacion"]
+            peliculas.autor = info_pelicula["autor"]
+            peliculas.actualizado = info_pelicula["actualizado"]
             peliculas.save() 
             messages.success(request, "Pelicula actualizada con éxito!")
             return redirect("peliculas")
@@ -234,7 +251,14 @@ def editar_pelicula(request, pelicula_id):
             messages.error(request, "Error al actualizar la pelicula")
             return render(request, "clapperboardApp/form_pelicula.html", {"form": form} )
     
-    form = NuevaPelicula(initial={"titulo": peliculas.titulo, "subtitulo": peliculas.subtitulo ,"descripcion": peliculas.descripcion, "imagen": peliculas.imagen, "fecha_publicacion": peliculas.fecha_publicacion})
+    form = NuevaPelicula(initial={"titulo": peliculas.titulo, 
+                                  "subtitulo": peliculas.subtitulo ,
+                                  "descripcion": peliculas.descripcion, 
+                                  "imagen": peliculas.imagen, 
+                                  "fecha_publicacion": peliculas.fecha_publicacion,
+                                  "autor": peliculas.autor,
+                                  "actualizado": peliculas.actualizado,
+                                  })
        
     return render (request, "clapperboardApp/form_pelicula.html", {"form": form })
     

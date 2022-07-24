@@ -33,6 +33,15 @@ class UserEditForm(UserCreationForm):
     class Meta:
         model = User
         fields= ['first_name', 'last_name', 'email', 'password1', 'password2']
+
+class UserEditForm2(forms.Form):
+    
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido")
+    
+    email= forms.EmailField(label="Email")
+    imagen= forms.ImageField(label="Imagen", required=False)
+
         
 class AvatarForm(forms.Form):
      
