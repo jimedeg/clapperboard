@@ -21,7 +21,7 @@ Editar Perfil- CLAPPERBOARD
                     {% endfor %}
                 </div>
                 <h5>Estas editando el perfil de "{{user.username}}": </h5>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
             
                     {{form | crispy}}

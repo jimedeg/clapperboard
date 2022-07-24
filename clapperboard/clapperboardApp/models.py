@@ -16,9 +16,9 @@ class Pelicula(models.Model):
     titulo = models.CharField(max_length=50)
     subtitulo= models.CharField(max_length=100)
     descripcion = models.CharField(max_length=200)
-    imagen = models.ImageField(upload_to='peliculas', blank=True)
+    imagen = models.ImageField(upload_to='peliculas', blank=True, null=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
-    #usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, editable=False)
     
     class Meta:
         ordering = ["-fecha_publicacion"]

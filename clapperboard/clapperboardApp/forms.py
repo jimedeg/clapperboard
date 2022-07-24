@@ -33,6 +33,15 @@ class UserEditForm(UserCreationForm):
     class Meta:
         model = User
         fields= ['first_name', 'last_name', 'email', 'password1', 'password2']
+
+class UserEditForm2(forms.Form):
+    
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido")
+    
+    email= forms.EmailField(label="Email")
+    imagen= forms.ImageField(label="Imagen", required=False)
+
         
 class AvatarForm(forms.Form):
      
@@ -46,8 +55,8 @@ class NuevaPelicula(forms.Form):
     titulo = forms.CharField(label="Título")
     subtitulo = forms.CharField(label="Subtítulo")
     descripcion = forms.CharField(label="Descripción", widget=CKEditorWidget())
-    imagen = forms.ImageField(label="Imagen")
-    fecha_publicacion = forms.DateField(label="Fecha de publicación", widget=forms.SelectDateWidget)
+    imagen = forms.ImageField(label="Imagen", required=False)
+    fecha_publicacion = forms.DateField(label="Fecha de publicación", widget=forms.NumberInput(attrs={'type':'date'}))
     #usuario = forms.CharField(label="Usuario")
     
     class Meta:
