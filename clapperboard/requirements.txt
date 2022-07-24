@@ -2,3 +2,4 @@ django
 colorfield
 admin_interface
 crispy_forms
+ckeditor

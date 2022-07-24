@@ -37,10 +37,10 @@
                         
                     
                         {% if user.is_authenticated %}
-                            {% if user.avatar.imagen.url %}
+                            {% if user.avatar.imagen %}
                                 <img class="rounded-3" src=" {{ user.avatar.imagen.url }} " alt="" srcset="" style="height: 40px;">
                             {% else %}
-                                <i class="bi bi-person-circle text-light my-2"></i>
+                                <img class="rounded-3" src=" /media/avatar/generica.jpg " alt="" srcset="" style="height: 40px;">
                             {% endif %}
                             <li class="nav-item"> <p class="text my-2 mx-2" style="color: #cdff07;">  Hola, <b>{{user.username}}!</b></p></li>
                             <div class="btn-group dropstart">
