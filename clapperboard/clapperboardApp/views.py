@@ -227,6 +227,11 @@ def nueva_pelicula(request):
 def editar_pelicula(request, pelicula_id):
     
     peliculas= Pelicula.objects.get(id=pelicula_id)
+    try:
+        imagen = Pelicula.objects.get(id=pelicula_id)
+    except:
+        imagen = Pelicula(id=pelicula_id)
+        imagen.save()
     
     if request.method == "POST":
         
@@ -240,12 +245,17 @@ def editar_pelicula(request, pelicula_id):
             peliculas.subtitulo = info_pelicula["subtitulo"]
             peliculas.descripcion = info_pelicula["descripcion"]
             peliculas.imagen = info_pelicula["imagen"]
-            # peliculas.fecha_publicacion = info_pelicula["fecha_publicacion"]
-            peliculas.autor = info_pelicula["autor"]
-            peliculas.actualizado = info_pelicula["actualizado"]
+            peliculas.fecha_publicacion = info_pelicula["fecha_publicacion"]
+            # peliculas.usuario=request.user,
+            # peliculas.actualizado = info_pelicula["actualizado"]
             peliculas.save() 
             messages.success(request, "Pelicula actualizada con éxito!")
-            return redirect("peliculas")
+            
+            if info_pelicula['imagen'] != None:
+                imagen.imagen = info_pelicula['imagen']
+                imagen.save()
+                           
+            return redirect("peliculas")            
         
         else:
             messages.error(request, "Error al actualizar la pelicula")
@@ -256,8 +266,7 @@ def editar_pelicula(request, pelicula_id):
                                   "descripcion": peliculas.descripcion, 
                                   "imagen": peliculas.imagen, 
                                   "fecha_publicacion": peliculas.fecha_publicacion,
-                                  "autor": peliculas.autor,
-                                  "actualizado": peliculas.actualizado,
+                                #   "usuario": peliculas.usuario,
                                   })
        
     return render (request, "clapperboardApp/form_pelicula.html", {"form": form })
