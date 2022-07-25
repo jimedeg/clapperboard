@@ -332,14 +332,19 @@ def series(request):
 
 @staff_member_required
 def nueva_serie(request):
-    if request.method == "POST":
+      
+  if request.method == "POST":
         
         form = NuevaSerie(request.POST, request.FILES)
         
         if form.is_valid():
             
             info_serie = form.cleaned_data
-            serie = Serie(titulo=info_serie["titulo"], subtitulo=info_serie["subtitulo"] ,descripcion=info_serie["descripcion"], imagen=info_serie["imagen"], fecha_publicacion=info_serie["fecha_publicacion"])
+            serie = Serie(titulo=info_serie["titulo"], 
+                           subtitulo=info_serie["subtitulo"],
+                           descripcion=info_serie["descripcion"], 
+                           imagen=info_serie["imagen"], 
+                           fecha_publicacion=info_serie["fecha_publicacion"])
             serie.save() 
             messages.success(request, "Serie agregada con éxito!")
             return redirect("serie")
@@ -348,7 +353,7 @@ def nueva_serie(request):
             messages.error(request, "Error al agregar la serie")
             return render(request, "clapperboardApp/form_serie.html", {"form": form})
     
-    else:
+  else:
         form_vacio = NuevaSerie()
     
         return render(request, "clapperboardApp/form_serie.html", {"form": form_vacio})

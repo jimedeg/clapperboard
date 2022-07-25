@@ -65,14 +65,15 @@ class NuevaPelicula(forms.Form):
 
 class NuevaSerie(forms.Form):
     titulo = forms.CharField(label="Titulo")
+    subtitulo = forms.CharField(label="Subtítulo")
     descripcion = forms.CharField(label="Descripcion", widget=CKEditorWidget)
     imagen = forms.ImageField(label="Imagen")
-    fecha_publicacion = forms.DateField(label="Fecha de publicacion")
-    usuario = forms.CharField(label="Usuario")
+    fecha_publicacion = forms.DateField(label="Fecha de publicacion", widget=forms.NumberInput(attrs={'type':'date'}))
+    
     
     class Meta:
         model = Serie
-        fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
+        fields = ['titulo', 'subtitulo' ,'descripcion', 'imagen', 'fecha_publicacion']
 
 class NuevaJuego(forms.Form):
     titulo = forms.CharField(label="Titulo")
