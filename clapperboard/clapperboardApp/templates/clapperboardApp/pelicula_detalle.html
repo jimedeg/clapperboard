@@ -8,21 +8,45 @@ Detalle Pelicula- CLAPPERBOARD
 {% endblock %}
 
 {% block contenidoPagina %}
-<body class="display: flex flex-direction: column">
-    <div class="row d-flex justify-content-center">
+    <body class="display: flex flex-direction: column">
+        <div class="row d-flex justify-content-center">
+            
+            <div class="card border-success my-2 mb-3" style="max-width: 50rem;">
+                <div class="card-header bg-transparent border-success">{{pelicula.titulo}}</div>
+                <div class="card-body text-success">
+                <h5 class="card-title"> {{pelicula.titulo}}</h5>
+                <p class="card-text"> {{pelicula.descripcion | safe}} </p>
+                <a href="{% url 'peliculas' %}" class="btn btn-outline-success">Volver</a>
+                </div>
+                <div class="card-footer bg-transparent border-success">{{pelicula.fecha_publicacion}} <br>  Autor: {{pelicula.usuario}} </div>
         
-        <div class="card border-success my-2 mb-3" style="max-width: 50rem;">
-            <div class="card-header bg-transparent border-success">{{pelicula.titulo}}</div>
-            <div class="card-body text-success">
-            <h5 class="card-title"> {{pelicula.titulo}}</h5>
-            <p class="card-text"> {{pelicula.descripcion | safe}} </p>
-            <a href="{% url 'peliculas' %}" class="btn btn-outline-success">Volver</a>
             </div>
-            <div class="card-footer bg-transparent border-success">{{pelicula.fecha_publicacion}}</div>
-    
+            
         </div>
-        
-    </div>
-</body>
+    </body>
+
+    
+    <section class="bg-secondary bg-opacity-10 py-5">
+        <div class="container px-5">
+            <div class="row gx-6 justify-content-center">
+                <div class="col-lg-6">
+                    <h3>Comentarios</h3>
+                    <div>
+                        {% for message in messages %}
+                        <p class="alert alert-danger"> {{message}} </p>
+                        {% endfor %}
+                    </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                
+                        {{form | crispy}}
+                
+                        <button class="btn btn-outline-danger my-3 d-grid gap-2 col-4" type="submit">Enviar comentario</button>            
+                   
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
