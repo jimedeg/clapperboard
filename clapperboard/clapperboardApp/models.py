@@ -45,12 +45,6 @@ class Juego(models.Model):
     descripcion = models.CharField(max_length=200)
     imagen = models.ImageField(upload_to='juegos', blank=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
-    
-class Musica(models.Model):
-    titulo = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=200)
-    imagen = models.ImageField(upload_to='musica', blank=True)
-    fecha_publicacion = models.DateField(auto_now_add=True)
 
 class Comentario(models.Model):
     nombre = models.CharField(max_length=50)
@@ -62,6 +56,8 @@ class Comentario(models.Model):
     class Meta:
         ordering = ['-creado']
  
-class Coment(models.Model):
-    titulo = models.CharField(max_length=50)
-    comentario = models.CharField(max_length=500)        
+# class Coment(models.Model):
+#     autor =models.ForeignKey(User, on_delete=models.CASCADE)
+#     pelicula = models.ForeignKey(Pelicula, related_name="coment" ,on_delete=models.CASCADE)
+#     comentario= models.TextField()
+#     fecha = models.DateTimeField(auto_now_add=True)       

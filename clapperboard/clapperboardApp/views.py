@@ -19,7 +19,7 @@ from django.views.generic.detail import DetailView
 # Create your views here.
 def inicio(request):
     
-    pelicula = Pelicula.objects.all()[:3]
+    peliculas = Pelicula.objects.all()[:3]
     series = Serie.objects.all()[:3]
     
     if request.user.is_authenticated:
@@ -29,9 +29,9 @@ def inicio(request):
             url = avatar.imagen.url
         except:
             url = "/media/avatar/generica.jpg"
-            return render(request, "clapperboardApp/index.html", {"pelicula": pelicula, "series": series, "url": url})
+            return render(request, "clapperboardApp/index.html", {"peliculas": peliculas, "series": series, "url": url})
         
-    return render(request, "clapperboardApp/index.html", {"pelicula": pelicula, "series": series})
+    return render(request, "clapperboardApp/index.html", {"peliculas": peliculas, "series": series})
 
 def login_request(request):
     
@@ -287,33 +287,6 @@ class PeliculaDetalle(LoginRequiredMixin,DetailView):
     model = Pelicula
     template_name = "clapperboardApp/pelicula_detalle.html"
     context_object_name = "pelicula"
-    
-    # @login_required
-    # def nuevo_comentario(request):
-    
-    #     if request.method =="POST":
-            
-    #         form = FormComent(request.POST)
-            
-    #         if form.is_valid():
-                
-    #             info_coment = form.cleaned_data
-    #             coment = Coment(titulo=info_coment["titulo"],
-    #                             comentario=info_coment["comentario"],
-    #                             user_id = request.user.id,
-    #                             )
-    #             coment.save()
-                
-    #             return redirect("peliculas")
-            
-    #         else:
-    #             redirect("peliculas")
-                
-    #     else:
-    #         form= FormComent()
-    #         return render(request, "clapperboardApp/pelicula_detalle.html", {"form": form, "coment": coment})
-
-
 
 def comentarios(request):
     

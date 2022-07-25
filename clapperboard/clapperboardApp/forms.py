@@ -86,20 +86,9 @@ class NuevaJuego(forms.Form):
         model = Juego
         fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
 
-class NuevaMusica(forms.Form):
-    titulo = forms.CharField(label="Titulo")
-    descripcion = forms.CharField(label="Descripcion")
-    imagen = forms.ImageField(label="Imagen")
-    fecha_publicacion = forms.DateField(label="Fecha de publicacion")
-    usuario = forms.CharField(label="Usuario")
-    
-    class Meta:
-        model = Musica
-        fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
-
 class FormComent(forms.Form):
-    titulo= forms.CharField(label="Titulo", max_length=50)
-    comentario = forms.CharField(label="Comentario", widget=forms.Textarea, max_length=500)
+    comentario= forms.CharField(max_length=1000, required=True, label="Comentario", widget=forms.Textarea)
+    fecha = forms.DateField(label="Fecha", widget=forms.NumberInput(attrs={'type':'date'}))
 
 class NuevoComentario(forms.Form):
     nombre = forms.CharField(max_length=50)

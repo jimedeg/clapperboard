@@ -26,27 +26,6 @@ Detalle Pelicula- CLAPPERBOARD
     </body>
 
     
-    <section class="bg-secondary bg-opacity-10 py-5">
-        <div class="container px-5">
-            <div class="row gx-6 justify-content-center">
-                <div class="col-lg-6">
-                    <h3>Comentarios</h3>
-                    <div>
-                        {% for message in messages %}
-                        <p class="alert alert-danger"> {{message}} </p>
-                        {% endfor %}
-                    </div>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                
-                        {{form | crispy}}
-                
-                        <button class="btn btn-outline-danger my-3 d-grid gap-2 col-4" type="submit">Enviar comentario</button>            
-                   
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
 {% endblock %}

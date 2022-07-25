@@ -24,56 +24,40 @@ Inicio - CLAPPERBOARD
     </div>
 </header>
 <!-- Peliculas destacados section-->
-<section class="bg-light py-5">
-    <div class="container px-5">
-        <div class="row gx-6 justify-content-center">
-            <div class="col-lg-6">
-                <!-- <h3>Los Cursos son:</h3> -->
-                
-                    {% for pelicula in peliculas %}
-                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-                        <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img src=" {{pelicula.imagen}} " class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                              <h5>{{x.titulo}}</h5>
-                              <p> {{x.descripcion}} </p>
-                            </div>
-                          </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
-                      </div>
-
-                    {% endfor %}
-                </ul>
-            </div>
+<section class="bg-light py-5 ">
+  {% for pelicula in peliculas %}
+    <div class="row d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <img src="{{pelicula.imagen.url}}" class="card-img-top" alt="{{pelicula.titulo}}">
+        <div class="card-body">
+          <h5 class="card-title">{{pelicula.titulo}}</h5>
+          <p class="card-text"> {{pelicula.subtitulo}} </p>
         </div>
-    </div>
+        <div class="card-body">
+          <a href="{% url 'PeliculaDetalle' pelicula.id %}" class="card-link">Ver Más</a>
+          <a href="{% url 'peliculas' %}" class="card-link">Peliculas</a>
+        </div>
+      </div>
+    </div>              
+  {% endfor %}                
 </section>
 <!-- Series destacados section-->
-<div class="list-group py-5 px-5 bg-danger p-2 text-dark bg-opacity-10">
-    {% for e in evento %}
-    <a href="{% url 'evento' %}" class="list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="text-danger mb-1">{{e.nombre}}</h5>
-            <small class="text-muted"></small>
+<section class="bg-light py-5 ">
+  {% for serie in series %}
+    <div class="row d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <img src="{{serie.imagen.url}}" class="card-img-top" alt="{{serie.titulo}}">
+        <div class="card-body">
+          <h5 class="card-title">{{serie.titulo}}</h5>
+          <p class="card-text"> {{serie.subtitulo}} </p>
         </div>
-        <p class="mb-1">{{e.info}}</p>
-        <small class="text-muted">{{e.fecha}}</small>
-    </a>
-    {% endfor %}
-</div>
+        <div class="card-body">
+          <a href="{% url 'SerieDetalle' serie.id %}" class="card-link">Ver Más</a>
+          <a href="{% url 'series' %}" class="card-link">Series</a>
+        </div>
+      </div>
+    </div>              
+  {% endfor %}                
+</section>
 
 {% endblock %}
