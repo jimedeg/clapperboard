@@ -19,8 +19,8 @@ from django.views.generic.detail import DetailView
 # Create your views here.
 def inicio(request):
     
-    peliculas = Pelicula.objects.all()[:3]
-    series = Serie.objects.all()[:3]
+    peliculas = Pelicula.objects.all()[:1]
+    series = Serie.objects.all()[:1]
     
     if request.user.is_authenticated:
         

@@ -1,3 +1,4 @@
+import re
 from secrets import choice
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -55,7 +56,7 @@ class NuevaPelicula(forms.Form):
     titulo = forms.CharField(label="Título")
     subtitulo = forms.CharField(label="Subtítulo")
     descripcion = forms.CharField(label="Descripción", widget=CKEditorWidget())
-    imagen = forms.ImageField(label="Imagen")
+    imagen = forms.ImageField(label="Imagen", required=False)
     fecha_publicacion = forms.DateField(label="Fecha de publicación", widget=forms.NumberInput(attrs={'type':'date'}))
     #usuario = forms.CharField(label="Usuario")
     
