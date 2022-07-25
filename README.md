@@ -1,8 +1,7 @@
 # Clapperboard 
 
 ## Descripción
-Landing page informativa de películas, series. En la cual te podes loguear, tener un perfil con tus datos personales  
-e imagen de perfil. A su vez brinda información de donde podes ver cada peli o serie.  
+Landing page informativa de películas, series. En la cual te podes loguear, tener un perfil con tus datos personales e imagen de perfil. A su vez brinda información de donde podes ver cada peli o serie.  
 
 ## Instalación
 1- En Github en code copiamos el https:
