@@ -22,9 +22,10 @@ urlpatterns = [
     path ('eliminar_serie/<serie_id>/', eliminar_serie, name= "eliminar_serie"),
     path ('series/<pk>/', SerieDetalle.as_view(), name= "SerieDetalle"),
     
-
-
     path('comentarios/', comentarios, name= "comentarios"),
+    
+    path('about/', nosotros, name= "about"),
+    
     
     
     # path ('comentario', comentario, name= "comentario"),

@@ -317,6 +317,8 @@ def comentarios(request):
     
     return render(request, "clapperboardApp/comentarios.html", {"comentarios": comentarios, "form": form})
 
+def nosotros(request):
+    return render(request, "clapperboardApp/about.html")
 
 def series(request):
         
