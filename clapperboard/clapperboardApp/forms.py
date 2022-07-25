@@ -65,14 +65,15 @@ class NuevaPelicula(forms.Form):
 
 class NuevaSerie(forms.Form):
     titulo = forms.CharField(label="Titulo")
+    subtitulo = forms.CharField(label="Subtítulo")
     descripcion = forms.CharField(label="Descripcion", widget=CKEditorWidget)
-    imagen = forms.ImageField(label="Imagen")
-    fecha_publicacion = forms.DateField(label="Fecha de publicacion")
-    usuario = forms.CharField(label="Usuario")
+    imagen = forms.ImageField(label="Imagen", required=False)
+    fecha_publicacion = forms.DateField(label="Fecha de publicacion", widget=forms.NumberInput(attrs={'type':'date'}) )
+    # usuario = forms.CharField(label="Usuario")
     
     class Meta:
         model = Serie
-        fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
+        fields = ['titulo', 'subtitulo' ,'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
 
 class NuevaJuego(forms.Form):
     titulo = forms.CharField(label="Titulo")
@@ -95,6 +96,10 @@ class NuevaMusica(forms.Form):
     class Meta:
         model = Musica
         fields = ['titulo', 'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
+
+class FormComent(forms.Form):
+    titulo= forms.CharField(label="Titulo", max_length=50)
+    comentario = forms.CharField(label="Comentario", widget=forms.Textarea, max_length=500)
 
 class NuevoComentario(forms.Form):
     nombre = forms.CharField(max_length=50)
