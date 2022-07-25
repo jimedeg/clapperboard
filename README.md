@@ -41,7 +41,6 @@ e imagen de perfil. A su vez brinda información de donde podes ver cada peli o 
 -Mi nombre es Ignacio Iraola , soy uno de los creadores del proyecto, mi tarea fue realizar el modelo Series y todo lo que el despliega.  
 
 
--Mi nombre es Jimena Anahí Degiorgi, soy una de las creadoras de este proyecto, mi tarea fue realizar, el login, logout,  
-editar perfil, agregar avatar, como asi tambien crear el modelo Peliculas y todo lo que ella despliega. El Readme y los test, como así tambien la sección de comentarios en la pagina.
+-Mi nombre es Jimena Anahí Degiorgi, soy una de las creadoras de este proyecto, mi tarea fue realizar, el login, logout, editar perfil, agregar avatar, como asi tambien crear el modelo Peliculas y todo lo que ella despliega. El Readme y los test, como así tambien la sección de comentarios en la pagina.
 
  [Linkedin](https://www.linkedin.com/in/jimena-anahí-degiorgi/ "Linkedin" )
