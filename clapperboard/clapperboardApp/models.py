@@ -15,7 +15,7 @@ class Avatar(models.Model):
 class Pelicula(models.Model):
     titulo = models.CharField(max_length=50)
     subtitulo= models.CharField(max_length=100)
-    descripcion = models.CharField(max_length=200)
+    descripcion = models.CharField(max_length=300)
     imagen = models.ImageField(upload_to='peliculas', blank=True, null=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
     usuario = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, editable=False)
@@ -29,7 +29,7 @@ class Pelicula(models.Model):
 class Serie(models.Model):
     titulo = models.CharField(max_length=50)
     subtitulo= models.CharField(max_length=100)    
-    descripcion = models.CharField(max_length=200)
+    descripcion = models.CharField(max_length=300)
     imagen = models.ImageField(upload_to='series', blank=True, null=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
     usuario = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, editable=False)
