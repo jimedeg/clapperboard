@@ -55,7 +55,7 @@ class NuevaPelicula(forms.Form):
     titulo = forms.CharField(label="Título")
     subtitulo = forms.CharField(label="Subtítulo")
     descripcion = forms.CharField(label="Descripción", widget=CKEditorWidget())
-    imagen = forms.ImageField(label="Imagen", required=False)
+    imagen = forms.ImageField(label="Imagen")
     fecha_publicacion = forms.DateField(label="Fecha de publicación", widget=forms.NumberInput(attrs={'type':'date'}))
     #usuario = forms.CharField(label="Usuario")
     
@@ -67,7 +67,7 @@ class NuevaSerie(forms.Form):
     titulo = forms.CharField(label="Titulo")
     subtitulo = forms.CharField(label="Subtítulo")
     descripcion = forms.CharField(label="Descripcion", widget=CKEditorWidget)
-    imagen = forms.ImageField(label="Imagen", required=False)
+    imagen = forms.ImageField(label="Imagen")
     fecha_publicacion = forms.DateField(label="Fecha de publicacion", widget=forms.NumberInput(attrs={'type':'date'}) )
     # usuario = forms.CharField(label="Usuario")
     
