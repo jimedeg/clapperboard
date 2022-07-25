@@ -73,7 +73,7 @@ class NuevaSerie(forms.Form):
     
     class Meta:
         model = Serie
-        fields = ['titulo', 'subtitulo' ,'descripcion', 'imagen', 'fecha_publicacion', 'usuario']
+        fields = ['titulo', 'subtitulo' ,'descripcion', 'imagen', 'fecha_publicacion']
 
 class NuevaJuego(forms.Form):
     titulo = forms.CharField(label="Titulo")
