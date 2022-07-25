@@ -353,14 +353,14 @@ def series(request):
         buscar = request.POST["buscar"]
         
         if buscar != "":
-            serie = Serie.objects.filter(Q(titulo__icontains=buscar))
+            series = Serie.objects.filter(Q(titulo__icontains=buscar))
             
-            return render(request, "clapperboardApp/series.html", {"serie": serie, "buscar": True, "busqueda":buscar})
+            return render(request, "clapperboardApp/series.html", {"series": series, "buscar": True, "busqueda":buscar})
     
             
-    serie = Serie.objects.all()
+    series = Serie.objects.all()
     
-    return render(request, "clapperboardApp/series.html", {"serie": serie, "buscar": False})      
+    return render(request, "clapperboardApp/series.html", {"series": series, "buscar": False})      
 
 @staff_member_required
 def nueva_serie(request):
@@ -419,7 +419,11 @@ def editar_serie(request, serie_id):
             messages.error(request, "Error al actualizar la serie")
             return render(request, "clapperboardApp/form_serie.html", {"form": form} )
     
-    form = NuevaSerie(initial={"titulo": serie.titulo, "subtitulo": serie.subtitulo ,"descripcion": serie.descripcion, "imagen": serie.imagen, "fecha_publicacion": serie.fecha_publicacion})
+    form = NuevaSerie(initial={"titulo": serie.titulo, 
+                               "subtitulo": serie.subtitulo,
+                               "descripcion": serie.descripcion, 
+                               "imagen": serie.imagen, 
+                               "fecha_publicacion": serie.fecha_publicacion})
        
     return render (request, "clapperboardApp/form_serie.html", {"form": form })
 
