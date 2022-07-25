@@ -364,13 +364,13 @@ def editar_serie(request, serie_id):
         
         if form.is_valid():
             
-            info_pelicula = form.cleaned_data
+            info_serie = form.cleaned_data
             
-            serie.titulo = info_pelicula["titulo"]
-            serie.subtitulo = info_pelicula["subtitulo"]
-            serie.descripcion = info_pelicula["descripcion"]
-            serie.imagen = info_pelicula["imagen"]
-            serie.fecha_publicacion = info_pelicula["fecha_publicacion"]
+            serie.titulo = info_serie["titulo"]
+            serie.subtitulo = info_serie["subtitulo"]
+            serie.descripcion = info_serie["descripcion"]
+            serie.imagen = info_serie["imagen"]
+            serie.fecha_publicacion = info_serie["fecha_publicacion"]
             serie.save() 
             messages.success(request, "Serie actualizada con éxito!")
             return redirect("series")
