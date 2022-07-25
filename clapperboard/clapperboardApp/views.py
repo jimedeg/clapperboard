@@ -284,6 +284,33 @@ class PeliculaDetalle(DetailView):
     model = Pelicula
     template_name = "clapperboardApp/pelicula_detalle.html"
     context_object_name = "pelicula"
+    
+    @login_required
+    def nuevo_comentario(request):
+    
+        if request.method =="POST":
+            
+            form = FormComent(request.POST)
+            
+            if form.is_valid():
+                
+                info_coment = form.cleaned_data
+                coment = Coment(titulo=info_coment["titulo"],
+                                comentario=info_coment["comentario"],
+                                user_id = request.user.id,
+                                )
+                coment.save()
+                
+                return redirect("peliculas")
+            
+            else:
+                redirect("peliculas")
+                
+        else:
+            form= FormComent()
+            return render(request, "clapperboardApp/pelicula_detalle.html", {"form": form, "coment": coment})
+
+
 
 def comentarios(request):
     
@@ -297,7 +324,9 @@ def comentarios(request):
         if form.is_valid():
             
             info_comentarios = form.cleaned_data
-            comentarios = Comentario(nombre=info_comentarios["nombre"], email=info_comentarios["email"], mensaje=info_comentarios["mensaje"])
+            comentarios = Comentario(nombre=info_comentarios["nombre"], 
+                                     email=info_comentarios["email"], 
+                                     mensaje=info_comentarios["mensaje"])
             comentarios.save()
             messages.success(request, "Comentario agregado con éxito!")
             return redirect("comentarios")
@@ -312,8 +341,6 @@ def comentarios(request):
     return render(request, "clapperboardApp/comentarios.html", {"comentarios": comentarios, "form": form})
 
 
-
-
 def series(request):
         
     if request.method == "POST":
@@ -321,7 +348,7 @@ def series(request):
         buscar = request.POST["buscar"]
         
         if buscar != "":
-            serie = Serie.objects.filter(Q(titulo__icontains=buscar)).values()
+            serie = Serie.objects.filter(Q(titulo__icontains=buscar))
             
             return render(request, "clapperboardApp/series.html", {"serie": serie, "buscar": True, "busqueda":buscar})
     
@@ -339,7 +366,12 @@ def nueva_serie(request):
         if form.is_valid():
             
             info_serie = form.cleaned_data
-            serie = Serie(titulo=info_serie["titulo"], subtitulo=info_serie["subtitulo"] ,descripcion=info_serie["descripcion"], imagen=info_serie["imagen"], fecha_publicacion=info_serie["fecha_publicacion"])
+            serie = Serie(titulo=info_serie["titulo"],
+                          subtitulo=info_serie["subtitulo"],
+                          descripcion=info_serie["descripcion"],
+                          imagen=info_serie["imagen"],
+                          fecha_publicacion=info_serie["fecha_publicacion"],
+                          usuario=request.user,)
             serie.save() 
             messages.success(request, "Serie agregada con éxito!")
             return redirect("serie")
