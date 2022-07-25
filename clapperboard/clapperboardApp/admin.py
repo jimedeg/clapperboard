@@ -10,7 +10,7 @@ class PeliculaAdmin(admin.ModelAdmin):
     list_display= ('titulo', 'subtitulo', 'descripcion', 'fecha_publicacion', 'imagen', 'usuario')
 
 class SerieAdmin(admin.ModelAdmin):
-    list_display= ('titulo', 'descripcion', 'fecha_publicacion')
+    list_display= ('titulo', 'subtitulo', 'descripcion', 'fecha_publicacion', 'imagen', 'usuario')
     
 class ComentarioAdmin(admin.ModelAdmin):
     list_display= ('nombre', 'email', 'mensaje', 'actualizado', 'creado')

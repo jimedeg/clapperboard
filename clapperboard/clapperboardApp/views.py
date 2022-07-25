@@ -374,7 +374,7 @@ def nueva_serie(request):
                           usuario=request.user,)
             serie.save() 
             messages.success(request, "Serie agregada con éxito!")
-            return redirect("serie")
+            return redirect("series")
         
         else:
             messages.error(request, "Error al agregar la serie")

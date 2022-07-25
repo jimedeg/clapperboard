@@ -61,9 +61,12 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('titulo', models.CharField(max_length=50)),
+                ('subtitulo', models.CharField(max_length=100)),
                 ('descripcion', models.CharField(max_length=200)),
-                ('imagen', models.ImageField(blank=True, upload_to='series')),
+                ('imagen', models.ImageField(blank=True, null=True, upload_to='series')),
                 ('fecha_publicacion', models.DateField(auto_now_add=True)),
+                ('usuario', models.ForeignKey(blank=True, editable=False, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+
             ],
         ),
         migrations.CreateModel(

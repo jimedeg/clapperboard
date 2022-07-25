@@ -33,6 +33,12 @@ class Serie(models.Model):
     imagen = models.ImageField(upload_to='series', blank=True, null=True)
     fecha_publicacion = models.DateField(auto_now_add=True)
     usuario = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, editable=False)
+    
+    class Meta:
+        ordering = ["-fecha_publicacion"]
+    
+    def __str__(self):
+        return self.titulo
 
 class Juego(models.Model):
     titulo = models.CharField(max_length=50)
