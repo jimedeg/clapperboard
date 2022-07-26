@@ -4,11 +4,11 @@ from .views import *
 
 urlpatterns = [
     path('', inicio, name='inicio'),
-    path ('login', login_request, name= "login"),
-    path ('register', register_request, name= "register"),
-    path ('logout', logout_request, name= "logout"),
-    path ('editar_perfil', editar_perfil, name= "editar_perfil"),
-    path ('agregar_avatar', agregar_avatar, name= "agregar_avatar"),
+    path ('accounts/login', login_request, name= "accounts/login"),
+    path ('accounts/register', register_request, name= "accounts/register"),
+    path ('accounts/logout', logout_request, name= "accounts/logout"),
+    path ('accounts/editar_perfil', editar_perfil, name= "accounts/editar_perfil"),
+    path ('accounts/agregar_avatar', agregar_avatar, name= "accounts/agregar_avatar"),
     
     path ('peliculas', peliculas, name= "peliculas"),
     path ('nueva_pelicula', nueva_pelicula, name= "nueva_pelicula"),

@@ -49,15 +49,15 @@
                                 Perfil
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #d5e691;">
-                                    <li><a class="dropdown-item" href="{% url 'editar_perfil' %}"><span style="color: #0a0a0a">Editar Perfil</span></a></li>
-                                    <li><a class="dropdown-item" href="{% url 'agregar_avatar' %}"><span style="color: #0a0a0a">Agregar Avatar</span></a></li>
+                                    <li><a class="dropdown-item" href="{% url 'accounts/editar_perfil' %}"><span style="color: #0a0a0a">Editar Perfil</span></a></li>
+                                    <li><a class="dropdown-item" href="{% url 'accounts/agregar_avatar' %}"><span style="color: #0a0a0a">Agregar Avatar</span></a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'logout' %}"><span style="color: #0a0a0a"> Cerrar Sesión </span></a></li>
+                                    <li><a class="dropdown-item" href="{% url 'accounts/logout' %}"><span style="color: #0a0a0a"> Cerrar Sesión </span></a></li>
                                 </ul>
                             </div>
                         {% else %}
-                            <li class="nav-item"><a class="btn btn-outline-secondary mx-2" style="color: #cdff07;" href="{% url 'login' %}">Iniciar Sesión</a></li>
-                            <li class="nav-item"><a class="btn btn-outline-secondary mx-2" style="color: #cdff07;" href="{% url 'register' %}">Registrarse</a></li>
+                            <li class="nav-item"><a class="btn btn-outline-secondary mx-2" style="color: #cdff07;" href="{% url 'accounts/login' %}">Iniciar Sesión</a></li>
+                            <li class="nav-item"><a class="btn btn-outline-secondary mx-2" style="color: #cdff07;" href="{% url 'accounts/register' %}">Registrarse</a></li>
                         {% endif %}
                     </ul>    
                 </div>
