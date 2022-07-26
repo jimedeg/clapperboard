@@ -30,9 +30,12 @@ Nueva Serie- CLAPPERBOARD
                     {{ form | crispy }}
             
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-danger my-3 d-grid gap-2 col-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Guardar
-                    </button>
+                    <div class="d-flex ">
+                        <button type="button" class="btn btn-outline-danger mx-1 my-3 d-grid gap-2 col-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Guardar
+                        </button>
+                        <a href="{% url 'peliculas' %}" class="btn btn-outline-success mx-1 my-3 d-grid gap-2 col-4 linea">Cancelar</a>
+                    </div>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">

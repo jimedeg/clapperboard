@@ -26,8 +26,12 @@ Editar Perfil- CLAPPERBOARD
             
                     {{form | crispy}}
             
-                    <button class="btn btn-outline-danger my-3 d-grid gap-2 col-4" type="submit">Guardar Cambios</button>            
-                    
+                    <div class="d-flex ">
+                        <button class="btn btn-outline-danger mx-1 my-3 d-grid gap-2 col-4" type="submit">Guardar Cambios</button>            
+                        <a href="{% url 'inicio' %}" class="btn btn-outline-success mx-1 my-3 d-grid gap-2 col-4 linea">Cancelar</a>
+                    </div>
+
+                    </div>
                 </form>
             </div>
         </div>

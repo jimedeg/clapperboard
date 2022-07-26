@@ -27,8 +27,10 @@ Agregar Avatar- CLAPPERBOARD
             
                     {{form | crispy}}
             
-                    <button class="btn btn-outline-danger my-3 d-grid gap-2 col-4" type="submit">Guardar</button>            
-                    
+                    <div class="d-flex ">
+                        <button class="btn btn-outline-danger my-3 d-grid gap-2 col-4" type="submit">Guardar</button>            
+                        <a href="{% url 'inicio' %}" class="btn btn-outline-success mx-1 my-3 d-grid gap-2 col-4 linea">Cancelar</a>
+                    </div>
                 </form>
             </div>
         </div>

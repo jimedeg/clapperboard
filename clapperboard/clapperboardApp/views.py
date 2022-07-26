@@ -243,7 +243,7 @@ def editar_pelicula(request, pelicula_id):
         if form.is_valid():
             
             info_pelicula = form.cleaned_data
-            
+
             peliculas.titulo = info_pelicula["titulo"]
             peliculas.subtitulo = info_pelicula["subtitulo"]
             peliculas.descripcion = info_pelicula["descripcion"]
