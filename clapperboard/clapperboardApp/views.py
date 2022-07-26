@@ -408,7 +408,7 @@ def eliminar_serie(request, serie_id):
     messages.success(request, "Serie eliminada con éxito!")
     return redirect("series")
 
-class SerieDetalle(DetailView):
+class SerieDetalle(LoginRequiredMixin,DetailView):
     
     model = Serie
     template_name = "clapperboardApp/serie_detalle.html"
