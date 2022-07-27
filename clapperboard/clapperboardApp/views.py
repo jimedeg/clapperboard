@@ -261,8 +261,7 @@ def editar_pelicula(request, pelicula_id):
 
             peliculas.titulo = info_pelicula["titulo"]
             peliculas.subtitulo = info_pelicula["subtitulo"]
-            peliculas.descripcion = info_pelicula["descripcion"]
-            peliculas.imagen = info_pelicula["imagen"]
+            peliculas.descripcion = info_pelicula["descripcion"]                
             peliculas.fecha_publicacion = info_pelicula["fecha_publicacion"]
             # peliculas.usuario=request.user,
             # peliculas.actualizado = info_pelicula["actualizado"]
@@ -398,6 +397,11 @@ def nueva_serie(request):
 def editar_serie(request, serie_id):
     
     serie= Serie.objects.get(id=serie_id)
+    try:
+        imagen = Serie.objects.get(id=serie_id)
+    except:
+        imagen = Serie(id=serie_id)
+        imagen.save()
     
     if request.method == "POST":
         
@@ -410,10 +414,14 @@ def editar_serie(request, serie_id):
             serie.titulo = info_serie["titulo"]
             serie.subtitulo = info_serie["subtitulo"]
             serie.descripcion = info_serie["descripcion"]
-            serie.imagen = info_serie["imagen"]
             serie.fecha_publicacion = info_serie["fecha_publicacion"]
             serie.save() 
             messages.success(request, "Serie actualizada con éxito!")
+            
+            if info_serie['imagen'] != None:
+                imagen.imagen = info_serie['imagen']
+                imagen.save()
+            
             return redirect("series")
         
         else:

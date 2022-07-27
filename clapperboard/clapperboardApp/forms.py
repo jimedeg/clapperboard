@@ -68,7 +68,7 @@ class NuevaSerie(forms.Form):
     titulo = forms.CharField(label="Titulo")
     subtitulo = forms.CharField(label="Subtítulo")
     descripcion = forms.CharField(label="Descripcion", widget=CKEditorWidget)
-    imagen = forms.ImageField(label="Imagen")
+    imagen = forms.ImageField(label="Imagen", required=False)
     fecha_publicacion = forms.DateField(label="Fecha de publicacion", widget=forms.NumberInput(attrs={'type':'date'}) )
     # usuario = forms.CharField(label="Usuario")
     
