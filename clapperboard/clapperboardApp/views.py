@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib import messages
+from django.core.paginator import Paginator
+from django.http import Http404
 
 from django.views.generic.detail import DetailView
 
@@ -193,8 +195,21 @@ def peliculas(request):
                     
     
     peliculas = Pelicula.objects.all()
+    page= request.GET.get('page', 1)
     
-    return render(request, "clapperboardApp/peliculas.html", {"peliculas": peliculas, "buscar": False}) #'ctx':ctx      
+    try:
+        paginator = Paginator(peliculas, 3)
+        peliculas = paginator.page(page)
+    except:
+        raise Http404()
+    
+    data = {
+        'entity': peliculas,
+        'paginator': paginator,
+        'buscar': False,
+    }
+    
+    return render(request, "clapperboardApp/peliculas.html", data) #'ctx':ctx      
         
 @staff_member_required
 def nueva_pelicula(request):
