@@ -18,12 +18,7 @@ Nueva Pelicula- CLAPPERBOARD
         <div class="row gx-6 justify-content">
             <div class="col-lg-6">
                 <h3>Agregar una nueva Pelicula</h3>
-                <div>
-                    
-                    {% for message in messages %}
-                    <p class="alert alert-danger"> {{message}} </p>
-                    {% endfor %}
-                </div>
+
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     

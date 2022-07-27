@@ -178,8 +178,6 @@ def agregar_avatar(request):
     
     return render(request, "clapperboardApp/agregar_avatar.html", {"form": form})
 
-
-
 def peliculas(request):
     
     # ctx = {'form' = NuevoComentario()}
@@ -391,7 +389,6 @@ def nueva_serie(request):
         form_vacio = NuevaSerie()
     
         return render(request, "clapperboardApp/form_serie.html", {"form": form_vacio})
-
 
 @staff_member_required
 def editar_serie(request, serie_id):
