@@ -347,8 +347,21 @@ def series(request):
     
             
     series = Serie.objects.all()
+    page= request.GET.get('page', 1)
     
-    return render(request, "clapperboardApp/series.html", {"series": series, "buscar": False})      
+    try:
+        paginator = Paginator(series, 2)
+        series = paginator.page(page)
+    except:
+        raise Http404()
+    
+    data = {
+        'entity': series,
+        'paginator': paginator,
+        'buscar': False,
+    }
+    
+    return render(request, "clapperboardApp/series.html", data )      
 
 @staff_member_required
 def nueva_serie(request):
