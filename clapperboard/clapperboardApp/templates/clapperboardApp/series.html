@@ -44,8 +44,8 @@ Series - CLAPPERBOARD
                         {% if serie.imagen %}
                            <img src="{{serie.imagen.url}}" class="img-fluid rounded-start my-3" alt="{{serie.titulo}}">
                         {% endif %}
-                      </div>
-                      <div class="col-md-8">
+                        </div>
+                        <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title ">{{serie.titulo}}</h5>
                                 <p class="card-text" >{{serie.subtitulo}}</p>
@@ -56,24 +56,42 @@ Series - CLAPPERBOARD
                                     {% if user.is_authenticated %}
                                         {% if user.is_superuser %}
                                             <a href=" {% url 'editar_serie' serie.id %} " class="btn btn-outline-warning"> <i class="bi bi-pencil-square"></i> Editar</a>
-                                            <a href=" {% url 'eliminar_serie' serie.id %} " class="btn btn-outline-danger"> <i class="bi bi-trash"></i> Eliminar</a>
+                                                                                       <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i>
+                                                Eliminar
+                                            </button>
+                                            
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Está seguro de eliminar la serie?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                            <a href=" {% url 'eliminar_serie' serie.id %}"  class="btn btn-outline-danger"> Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         {% endif %}
                                     {% endif %}
-                                    <br>
-                                    <br>
-                                    <br> 
-                                    <br> 
+                                    <br> <br>
+                                    <br> <br> 
                                 <div class="card-footer bg-transparent ">{{serie.fecha_publicacion}} <br>  Autor: {{serie.usuario}} </div>
                 
-                                <!-- <p class="card-text"><small class="text-muted"></small></p> -->
                             </div>
-                      </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
         </div>
-           
     {% endfor %}
     <hr>  
     <div>
